@@ -1,0 +1,791 @@
+Page numbers:
+
+	1-11 (datascience)
+	12-13(cv)
+	13-20(datascience)
+	20-38(cv)
+	39-57(NN)
+	57-58(CV)
+	59-69(NN)
+	69-94(CNN)
+	94-98(TransferLearning - CNN (even we can use for RNN and ANN)
+
+
+from sklearn.metrics import confusion_matrix, accuracy_score
+confusion_matrix(y_test, y_pred)
+accuracy_score(y_test, y_pred)
+
+Dataset -> data cleaning -> Feature selection -> Data Preprocessing(one-hot encoding) -> 
+create model -> Train & Test Model
+
+DataScience : Extracting and analysing patterns in the data.
+Machine Learning: takes the data and predicts based on patterns.
+
+
+Independent variable - input  or predictor
+Dependent varibale - output or target
+
+
+Corelation - on data field is dependent on another.
+
+
+
+
+Conda Environment Setup:
+	-> conda create --name firstEnv
+	-> conda activate firstEnv
+	(conda install -c conda-forge tensorflow( to install modules))
+	-> conda install -c anaconda ipykernel (we need this for getting environment in jupyter)
+	-> python -m ipykernel install --user --name=firstEnv (to get environment in jupyter)
+
+
+
+IF X change Y changes i.e Y is Corelated to X and How much X changes does it become or change Y is what 
+we need to find i.e W (weight) or pattern is what we do in ML.
+
+Machine Learning:
+
+Learning means finding pattern(W) 
+pattern means we need to create a model.
+model means we need to create a function.
+y=wx
+
+First we find Y in data set i.e what we need to predict.
+Then we are going to see past data in Y and come to conclusion whether it is continous or classification
+i.e Continous has continous values / not fixed values (like 10,20,30...)(continous go with regression models)
+Classification we have fixed number of types (M/F , HR/Marketing/SoftwareDeveloper - Job Role ) These are fixed
+classifed categories.
+
+Based on the Y values we use specific algorithms.
+ 
+Linear Regression - we do regression anaylsis.
+sklearn is built on numpy. and many use numpy and for converting pandas dataframe to numpy we use x.values and to reshape inot 1D, 2D,... we use reshape().
+
+
+x.values -> will convert pandas datastructure to numpy array
+reshape(-1,1) will convert 1D to 2D.
+
+
+what we finally find in Multi linear regression algorithm is :
+
+y = b + w1x1 + w2x2 + ....
+
+i.e it finds b, w1, w2.....wn
+
+where w is the weight for that feature/field. 
+
+
+How internally Linear Regression works:
+
+we find min loss i.e y - y^ where y is actual value and y^ is predicted value.
+where y = b + wx now model keep a min value for b and W and find y^ it will be compared with y 
+y == y^ if not it changes the b, w and checks it and if y-y^ is very less i.e loss is very less.
+then those b and w values are called as min loss values. (can been seen in weight vs loss graph where 
+min loss is there that is the best weight)
+
+now the formula of y-y^ is done for one record which has min loss similarly it does for all the records.
+
+i.e |y1-y1^| + |y2-y2^| + ..... / n 
+this is called a Mean absolute error. so finally we need to reduce MAE.
+
+now for different values we get different MAE values when the value is very less it is perfcet to use.
+
+
+
+
+predict or Estimate :
+	1. classification Algorithms ([t/f], [M/F], different multi calssifications)
+	2. continous Algorithms (Regression)
+ 
+
+In linear Regression (continous values) we will find the angle/weight. 
+For this Linear Regression model uses substitution method for finding the correct weight.
+and we have a concept of intercept i.e a value which intercpets the axis.
+for this we add b to equation. i.e y = b + wx
+
+
+y -> actual value from testing data
+
+y^ -> is the preducted value for specific x in test data
+
+n is total records
+
+
+now  mean absolute error (MAE) = |y1-y1^| + |y2-y2^|+...../n 
+
+multi varient : if you have multiple features/ fields
+univarient: just on feature /field
+label encoding : string to numbers conversion 
+
+one-hot encoding:
+while converting into label encoding when there are different categories as string values and they are important
+then we use one-hot encoding but creating new fields.
+
+
+dummy variable trap:
+when on feature is changing another feature(multi collinearity) then we need to keep only one feature.
+
+
+
+each feature/field has weights based on that we can say focus more on that feature as that is important. 
+
+
+
+linear and classifiction models for prediction
+traditionl models: we analyize data and selcet the model and do manual feature selection and 
+data preprocessing(cleaning, one hot encoding ...)
+
+
+
+
+Pipeline:
+
+1. Dataset 
+2. Feature Selection
+3. Preprocessing
+4. Creating Model
+5. Testing Model
+6. Predicting Model
+
+
+2. Feature Selection: 
+
+	we can do using:
+
+	1. Manual Way - checking all the fields and removing those fields.
+	2. EDA(Exploirity Data Analysis) - where we do using Graphical way(sir used seaborn.conuntplot() and 
+										seaborn.heatmap())
+	3. Automation way
+	
+	
+	
+	
+	
+	
+3. Preprocessing:
+
+	Label Encdoing: gets different values for every string value  
+	
+	one-hot encoding: dummy variables.
+	
+	sir used from sklearn.preprcessing import OneHotEncoder 
+	
+	instead we can even use pandas.get_dummies(dataset['column])
+
+
+	Data cleaning:
+		Removing null/missing values is important:
+			If we have lot of nul values then we can eliminate it.
+			If we have few and it is an important feature then we replace the missing values using impuation of continuts value (mean of all values).
+			
+			we have other options like (Mean/Median Imputation, Mode Imputation(max repeted value), Regression Imputation(similar values), K-Nearest Neighbors (KNN) Imputation and many more )[given by chatgpt]
+			
+			
+			
+			
+			dataset.isnull() - gives t/f is the value is null it gives true.
+			
+			
+			sir used dataset.apply(func()) [in pandas we have apply()]  we have axis =0(row wise) and if axis =1(column wise)
+			by default axis is 0.
+
+
+			If you have 1000's of records and only 1 or 2 are missing and not visible in heat map then we can 
+			remove those records.
+			
+			
+			
+confusion_matrix:
+
+
+first diagonal is right answers predicted by model and reverse diagonal is wrong answers.
+
+True or False i.e right or wrong
+Positive or Negative predicted the value.
+
+if there is True Positive and True Negative the model has clearly predicted it is psitive or negative
+if there is False Positive and False Negative then model prdicted wrongly ( False Negative - i.e when it has negative it says positive (i.e when  happened it says not happened)
+
+the main issue is with False Positive only. i.e that is it says positive that is not problem but actually it is negative then it is a big problem.
+
+
+
+Fasle - is also called as Error
+
+so we have Type 1 Error - False Positive 
+			Type 2 Error - False Negative 
+			
+			so Type 1 Error is very dangerous.
+
+
+
+
+Regression - Linear Regression(uses linear function)
+Binary classification - Logistic Regression(uses Sigmoid Function)
+
+sigmoid function gives values between 0 and 1 
+but internally Logistic Regression makes the values Just 0 or 1 (no values between them)
+
+
+
+
+
+
+Computer Vision: (works on video/image processing)
+
+Image : Just a 3D array with [B,G,R](for cv2 module format)
+Video: Continuous images.
+
+Any modification in that [B,G,R] values can lead to many filters.
+
+when we take (3x3)/(nxn) matrix values of the photo and do mean and placing that value in the current cell
+This will lead to blur the image.(This 3x3 matrix is called as kernel) and this process of converting image 
+is called convolution.
+
+
+(left this concept for later)
+
+
+
+
+
+ML:
+
+Traditional approach: we did till now.
+new models are: deep learning models (uses NN)
+
+
+Traditional Models: Here we do manual Feature selection and if we include wrong feature which might lead to 
+					More computation and wrong prediction.
+					
+					Even in this when we increase and increase of dataset at one point model wont
+					increase the accuracy it becomes constant.
+					
+					
+					
+In Deep learning: it is part of Machine Learning concept.
+					It solves all the above problems using NN.
+					
+					It does automatic feature selection.
+					
+					
+
+Supervised Learning:					
+		Till now we have created models like from past data based on different features what output we get 
+		we have that data and used it and trained the model.
+
+
+
+In NN we can solve any problem like supervised, unsupervised, reinforment learning.
+
+
+
+
+NN:
+ Input,output layers and neural netowrk (multiple layers with multiple neurons in each layer)
+ Weights are given at first are called weight/kernel initilaizer.
+ 
+
+Activation Function: is algorithm used in single neuron (example we can use linear regression on single neuron)
+
+back propogation: based on output and actual value we get error (to minimise the error(mean absolute error) we change the weights for each input 
+for every iteration ) which is called as back propogation(changes the weight or reinitalize the weight)
+This process of giving or feeding new weights again to NN is called as Feed Forward.
+
+
+Optimizer:
+	As we are reinitalizing the weights again we need to focus on how much weight we are increasing or decreasing
+	as it will take a lot of time if we add +1 to each weight and calcuating many combinations for each feature
+	and weight with min error. For this we use optimizer by what value we need to increase or decrease the weight.
+	
+
+Each NN has multiple Hidden Layers which has multiple neuron. which are indirectly use a function (formula)
+
+
+Now based on problem we select the activation function(i.e linear/sigmoid) and 
+if it is linear we need to find bias and weight.
+so we initilaize both bias and weight.
+we used backpropagation and feed forward also based on the error function(Mean absolute error,Mean squre error). 
+and we use optimizer function for reinitalizing the weights,
+
+
+If we have only one neuron in NN it is called as perceptron.
+
+
+Traditional models we used sklearn module (from skitlearn library) which was build on top of numpy.
+Deep Learning models we use Keras module(also come from same name keras library) which was build on top of tensorflow.
+
+
+Input shape:
+			while at input layer we have multiple features so we need to specify how many input features are 
+			going to be inserted.
+			
+parameters: bias and weights(for linear regression function)
+
+
+
+loss/error function : checks the loss (ex: mean absolute value) so we give to a model to use MAE to 
+						check the loss or error.(model.compile(loss="mean_absolute_error")
+
+ 
+ 
+ 
+ 
+Most of the inner neurons but not the final layer neuron will use "Relu" as activation function.
+
+
+Each algorithm or function uses different math formula functions for caluculating errors.
+Regression - we can use Mean square error.
+Binary classification - binary_cross_entropy
+
+
+The loss we get after training is the loss given by loss function that much loss/cost difference we are from
+actual value.
+
+
+Gradient Desent:
+	Now if we get loss for different weights and it is decreasing then we check that using loss vs weight graph
+	and at one point we get very less loss. the decrease in loss is called gradient desent.
+	(which can clearly identify the perfect position of min loss)
+
+
+Learning Rate:
+		How fast we are going to find out the min loss by substituting different weights.
+		If learning rate is very slow we try many weights which will lead to perfect min loss and best accuracy.
+		
+	For this we use optimizer function.
+	
+
+optimizer will identify the current record loss and accordingly update the weights again and do feed forward or forward propagation.
+
+Epoch iteration: giving dataset again and again to the model which once again train using the same dataset.
+
+
+overfitting issue: when we use outside data for testing the accuracy might not be same with training/testing dataset
+for this we do testing for training and testing data if accuracy is same then it is good(validation_split while fitting the data)
+
+to solve overfitting we do Regularization -> L1, L2(ridge) and dropout.
+
+dropout: 
+	This will be used to use few neurons to be actvation in a single layer(randomly neurons will be dropout for evry epoch and feed forward).
+	
+L1 -> take value like y = b + wx (where w is a number)
+
+L2 - > take value like y = b + w^2 x  + loss ( where w is a number)
+
+Beacuse of these two the feature selection or weight to be given to it which will decrease the weight.
+and in L2 we add loss to the avtual value so that it will mainatin a balance bewteen loss and weight at last.
+
+
+	
+
+ANN(artifical -> text), CNN(convolve -> image/audio), RNN(recurrent -> natural language)
+
+transfer learning: we train a model and that model is given as input layer to another new model.
+
+	many models are already trained with many GPU's and gets perfect wait so we can leverage that using that model weights
+	and add more networks or layers on top of that and create a model which is called as transfer learning.
+
+
+
+1) Supervised learning: The problem is to identify the weights and we have y values for previous same problems which will help
+						us to learn and then we can predict new values.
+						
+2) Unsupervised learning: The problem where we need to do clustering and when we need to identify new patterns where we dont have previous 
+						y values to get trained.
+
+
+Preprocessing:
+	It even has 
+	-> feature scaling: where we do for all the features has a value between 0 to 1 so that all the values has similar magnitude
+								and model doesn't get confused while creating weights and giving importance to it.
+						for this we use standard scalar.
+
+
+
+
+Unsupervised learning: 
+
+	-> KMeans clustering: 
+						K number of clusters it creates with the data. We need to specify how many clusters to be created based on our requitrement
+						and it keep different points in different clusters by mathematically.
+						
+						Internally it uses Eucildean distance formula.
+						
+						K here mostly identified by at concept of inertia or elbow graph where the interia value is constant from that place 
+						we can keep that as K number of clusters value.
+						
+	
+	
+	-> KNN (K- nearnest neighbourhood):
+	
+			This can be used for small datasets and can solve regression and classification problems also.
+			This is a lazy learner i.e it remebers all the values and doesnt create any weights and identifies the perfect line 
+			or perfect trend line and then for new data it says where it can be placed.
+			
+						
+
+
+Deep Learning:
+	ANN: (Artifical Neural Network): for data (text data) where we can solve Regression/Classification problems.
+	CNN (convolution Neural Network): for video/Image data 
+	RNN: (Recurrent Neural Network): for for series/sequnece on time/day/date i.e Time series data.
+									The current record is dependent on previous records.
+									
+									
+									
+
+sir showed Kmeans, KNN, SVM, (for classification), XGBoost
+
+PCA, LDA,(for feature selection) algorithms  
+
+k-fold CV (cross validation) -> done for testing by taking random records (similar to random state)
+
+
+
+
+GridSearchCV -> is best algorithm on top of above models it will finds best hyper parameters in a grid/list of hyper parameters values.
+
+Randomized Search CV -> even best compared with Grid Search CV for finding best hyper parameters.(best for Random Forest algo)
+
+
+ unsupervised learning:
+ 
+	->Kmeans clustering:  
+	->Hierarical clustering: better than kmeans clustering
+ 
+ 
+ 
+ 
+ Recordings:
+ 
+	1st day : sir showed how to use maps using follium module. and yolo object detection.
+	2nd day: 
+	
+		Data
+			-> Analysis : we do use past data how and what happened.
+			-> Analytics: we do for future i.e what can happen i.e to predict.
+			
+		Histogram Graph.
+		
+		while drawing graph we see:
+			-> univariant variable: just one variable (mostly we use distribution i.e histogram graph)
+			-> bivariant variable: has two variables/columns (mostly we use join plot, scatter plot, bar plot, box plot ....)
+			-> multi varient variable: has multiple variable/columns
+			
+		seaborn pairplot() shows all the graphs with all columns. 
+			
+		sir showed many graphs like voilinplot, stripplot,swarmplot,sns.heatmap(), sns.clustermap(), lmplot(),regplot()
+		
+		
+		To identify what fields are co related at what perceptage then use:
+			dataset.corr()
+			
+			
+		sir showed dataset.pivottable() for clear understanding of dataset.
+		
+		we draw histogram like graphs for univarient dataset.
+		
+		
+	3rd day: sir explained titanic dataset and logistic regression.
+	
+	4th day: sir used plotly and cufflinks for EDA( gives interactive/dynamic graphs)
+				now sir showed matplotlib, seaborn, pandas, and these two modules for EDA.
+				
+				plotly has lot of code so the plotly comapny has wrapped the entire code and gave a module called cufflinks.
+				
+				mostly use cufflinks and dont forget that these should be used as offline.
+	
+	5th, 6th day: gave different dataset examples.
+	
+	7th day : 
+				Dimentiality Reduction(feature elimination):
+					Feature Selection: 
+						Filter(we remove features manually)
+						Embedded(this is done  directly by algorithm L1(lasso) and L2(ridge))
+						Wrapper
+					Feature Reduction:
+						PCA (principal component analysis) (we mostly combine different features together)
+					Feature Engineering:
+						one-hot encoding (is one of the process)
+				
+
+
+			Some times it is harder to identify what are categorical variables.so, in pandas it automatically identifies and deos it.
+			use : pd.get_dummies(X) give entire X it will identify and create dummy variables automatically.
+				
+			In filter we remove features which will help us in improving performance.
+			In Embedded method it will give you weight/coffeicents to each features.
+			In wrapper method we give weight/coffeicents then it removes the unrelavant features.
+			for this we using OLS(Ordinary Least square) which is also sometimes called as Linear regression.
+			after giving dataset to this OLS() model it will give you a summary() with all weights and pvalue(probablity value) and much more.
+			here we compare pvalue and t and remove the features one by one this is called as backward elimination(internally NN also use this way of elimination).
+			i.e pvalue close to zero are the best features.even check adjusted r square value when it increases after every elimination then it is good.
+			
+			
+	8th,9th day: already saw/explained videos.
+	
+	10th day: 
+	
+		Image Detection: I detects all the objects and creates a boundary arounf the object.
+		Image segamentation: Detects object and shows and highlights pixel by pixel of entire object.
+				1. semantic segamentation: gives all objects same color.
+				2. Instance segmentation: gives different colors for each object.
+				
+				
+				Facebook created Deep Mask using instance segamentation.
+	11th day:		
+				sir showed Mask-R CNN which is done using Instance Segmentation.
+				sir used cocodataset for getting weights i.e pre trained model which can identify all the objects.
+				sir has Mask-R-CNN github repoistory.
+				
+				
+	12th day:
+	
+			GAN's : In this model we are going to generate images(almost it creates images)
+					ex: visit thispersondoesnotexsist.com page it gives random images who are not actual humans.
+					In this we go backwards in normal CNN model as we are going to genarte a image as output.
+					but not to take image and classify it.
+					
+					for this we use:
+					
+					Random vector values as input layer.
+					In output layer it produces image so we use "tanh" actuvation function.
+				
+				In this it takes a normal dummy array image and gives that to generator and generate a new image 
+				and gives to descriminator which will identify that the image is good or not if not it send back to 
+				geneartor to regenerate the image again.
+				
+				
+	13th day: complete code of GAN(for minst data set)
+	
+			There are two things to increase the bussiness sales
+				1. Recommendation( we recommend a product based on their intrest)
+				2. Assosiaction( we say buy one thing with another you get some offer like that is called association)
+				
+				
+			for Recommendation:
+				where we use Deep Learning with RBM Method.
+				
+			for Assosiaction:
+				we have 
+					1. Apriori 
+					2. Eclet
+					
+			
+			
+
+			There are two things one is recommendation:
+				Lets assume we are trying to buy iphone it gives you might also like samsung phone also.
+				
+			and other one is frequently bought together(Association Concept):
+				Lets assume you are buying samsung phone mostly they also buy cover for it.
+				
+			In any store they check what we frequently buy i.e popularity(or support) then they do some analysis on the market 
+			which we buy in our cart or basket which is called as Market basket analysis(MBA)/ Bassket Data Analysis(BDA).
+			this is also called as affinity analysis.
+			
+			Association comes under unsupervised learning where we need to find association rules(like milk+bread) which
+			can be done using MBA(Market basket analysis).
+			
+			For association we have apriori and eclet algorithms.
+			
+			sir showed apriori algorithm in association code.
+			
+			
+	14th day:
+			Brain(mind):
+				conscious (logical)
+				subconscious -> This takes every thing(This is been used by many companies by analysis our tastes and give recommendations)
+				
+				
+				AWS has SageMaker service for Machine Learning. similar project i did where I have used jenkins and deployed a model
+				and changed the hyper paramters by checking the error  or accuracy.
+				
+				 
+				
+				Recommendation:
+					1. content based
+					2. collaborative filtering
+					3. hybrid 
+					4. context - Aware(CAR)
+					
+					content based: Item preference for user performance.
+									problem in this is at first it doesn't know what i like it is called as cold start.
+									(we dont need huge data)
+					collaborative filtering: this will remove cold start problem by taking features(like Male/24/,...) of other person
+											and if the features mactches with you mostly likely you like the same products of that person.
+											(we need huge data)
+											internally it uses cosine similarity and pearson corelation functions.
+						
+					Hybrid: when we combine both content and collaborative filtering it is best.
+					
+					context - aware: where we more focus on granular things like what time day and what location he is and what to
+										recommend to him and what similar person is watching at the same time.
+										
+					even hybrid also come under CAR.
+					
+					
+				For recommendation we have two approaches/codes:
+					1. memory based(we can use KNN where we find Eucildean distance between different users)
+					2. model based(we can do clustering and we can group similar people and recommend them[Kmeans])
+									even we can use matrix factorization model which will solve similar to clustering[SVD,PMF])
+									These two are traditionl approaches.
+									
+									Now we are going to use DL(NN) and we have RBM(restricted boltzmann machine) algorithm.
+									Even netflix generates 80% of revence using this RBM algorithm.
+									
+					
+					RBM uses Auto Encoder architecture.
+					
+					RBM is also unsupervised learning.
+					
+					RBM is doesn't use Gradient(adam/SGD) desent which is used by error(Means square error).
+					but instead it uses contrastive divergence which is used by error(Means square error).
+					
+					
+					Collaberative filtering:
+						User based: where we see simialr users with same intrest and compare and provide recommendation.
+						Item based: we is your past items and recommend similar items.
+						
+						
+						
+				RBM architecture is different from normal NN.
+				
+				Here we have input layer and one hidden layer (which is called as shallow NN) and a output layer.
+				
+				In this we take input layer features and find ouput layers and what we do is we now make
+				ouput layer as input layer i.e backward pass(taking the output as input and input layer 
+				becomes output layer) normally we changes just weights and bais but in this model we change the inputs
+				i.e Auto Encoder.
+				
+				so the way we go is we go forward pass and backward pass i.e undirected graph is used.
+				
+				Even RBM does feature selection.
+									
+					
+					
+											
+					cambridge facebook anaylitica research about this how they use your data.						
+				
+		
+			
+			
+			
+	15th day: sir showed the code for content based recommendation.
+	
+	16th day: For getting instance segamentation for images/video the best model is Mask-RCNN.
+	
+				we are going to create model like Mask-RCNN where it detects the images like instance segmentation.
+				
+				For this we need dataset and then we need to do annotation(i.e we need to provide the boundaries of the entire 
+				object) for training the model. and then we test the model finally when the accuracy is good we save that model.
+				
+				This is called as workflow. for this we use DEVOPS and make it as MLOPS.(create muliplte jobs)
+
+
+			For doing annotation for images there are many tools out there one of it is supervise.ly.
+			
+			in that site upload the images and do annotation and download it.
+			
+			it takes lot of time. and few images are possible to do so sir has used augumentation(i.e flip,zoom, rotate... the image)
+			for this sir used DTL option supervise.ly portol and gave a json file and it generated multiple images.
+			
+			Even it has a option called Neural Network where we can create entire NN model.
+			It provides multiple pre trained models and we can use them like transfer learning.
+			But here it doesn't provide the infrastructure so we need to do it in cloud(where we need cpu,RAM,GPU) and a linux o.s.
+			
+			in supervise.ly we even have cluster option where we can have multiple agents where supervise.ly we be like a master node
+			and other are slave node and after setting up that infrastructure(it need GPU) we can run the worflow and it runs.
+			
+			
+			
+	17th day:
+			Ensemble Tcehniques:
+				1. bagging (random forest)
+				2. Boosting (ada boost, xgboost)
+				
+				
+			Random Forest uses Decision Tree algorithm and create many models and gets the best of it and it is used by ensemble technique.
+			
+			sir showed random forest code which almost same as KMeans algorithm
+			
+			In random Forest it creates multiple decision trees and which one gets more voting that is selected.
+			
+			Mostly we can use decision tree model seperatly but now a days no one is using because of accuracy.
+			but internally random forest uses it.
+			
+			
+	18th day:
+	
+		NLP(natural language processing)
+		
+		Normally when we speak the hardware takes the radio waves and convert into 0101 binary format and it is converted into 
+		characters like (A - 65 ...) then as words and for transfereing that file we can using socket/ssh programming.
+
+		Now we combine all the words and we have grammer,vocabulary, spllings, many more....
+		
+		if a single charcater is changed a new meaning comes 
+		
+		NLP is natural language to be understood.
+		
+		Youtube comments is a example where we need to identify they are happy or not by the video.
+		
+		mostly we are going to understand the sentences which can be done using NLP.
+		
+		most popular library is NLTK, CoreNLP, SPacy.....
+		
+		
+		Spacy has many different languages it supports.
+		
+		now sir showed sample code where it takes sentence and give us all the tokens in that sentence which is called
+		as tokenization.
+		
+		for every token spacy gives a part of speech(POS) or tag number(and gives noun/pronoun/verb).
+		and even have syntactic dependency(nsubject/pcomp/compund..) for that token.
+		
+		even we have a pipeline in spacy where we doing parsing, tokenization .....
+		
+		
+		
+	day 19th :
+	
+		removing stop words: I, is ,...... 
+		the main aim is to understand what they are mainly focusing so remove the stop wrods and give the rest of the words
+		as features to NN.
+		
+		now converting multiple words into based words(run, ran, running... as run)  this is called as stemming.
+		For this the advance concept is Lemma.
+		
+		
+		sir showed many options lie (ents, noun_chunks)
+		
+		sir showed how stemming was done using nltk and its drawbacks.
+		
+		so in spacy we use lemmatization which is good at stemming (or morphological analysis)
+		
+		sometimes many use different shortcut stopwords so the spcay module might not have so sir showed how to add them to library.
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+			
+			
+				
+			
+			
+			
+			
+	
+			
+			
+			

@@ -1,0 +1,120 @@
+do a function which will substitute the mean value in null values in dataset
+
+try to test the values predicted by the model and the actual values (by for loop and a counter)
+then get the total count/length of array we get the accuracy or percentage of model.
+
+Try reading SIEM tools (Security incident event management)
+
+
+
+creating your own image (done)
+
+cropping a video and placing within in like zoom.(done)
+
+Face blur -> detect face -> get that position -> blur the face
+
+
+Face detection and recoginize the face then login into the application(authentication).
+
+send email if it is not a write person.
+
+play the music as soon as recoginized.
+
+
+Using GAN create new images which will create new purposes design(also try hand written) which will become new startup.
+
+
+read subconcious mind books and concept.
+dk book on pschology - read this book.
+
+
+
+
+AWS has SageMaker service for Machine Learning. similar project i did where I have used jenkins and deployed a model
+				and changed the hyper paramters by checking the error  or accuracy.
+
+
+
+
+cambridge facebook anaylitica research about this how they use your data.	
+
+6/12/21 - okay
+
+10/12/21 - okay
+
+15/12/21 - okay
+
+17/12/21 - okay
+
+22/12/21 - okay
+
+24/12/21 - see this video in datascience (done)
+
+27/12/21 - okay
+
+30/12/21 - okay
+
+
+
+3/1/22 - (done)
+
+5/1/22 - is missing(done)
+
+7/1/22 - is missing(done)
+
+12/1/22- (missing)(done)
+
+17/1/22 (missing)(done)
+
+26/1/22 -(missing)(done)
+
+28/1/22 (missing)(done)
+
+31/1/22 okay
+
+02/2/22 - (missing)(done)
+
+7/2/22 is okay
+
+
+
+
+
+
+datascience - 2 
+
+11/02/22
+
+21/2/22
+
+25/2/22
+
+2/3/22
+
+4/3/22
+
+9/3/22
+
+16/3/22
+
+30/3/22
+
+/4/22
+
+12/4/22
+
+13/4/22
+
+20/4/22
+
+
+
+
+
+Here are a few examples of how you can use different models in the "transformers" library:
+
+"distilbert": This model is designed to be smaller and faster than the original BERT model, so it may be a good choice if you have limited resources or need to generate text quickly. You can use it to generate summaries, answer questions, and perform other tasks that require natural language generation.
+"electra": This model is designed to be a general-purpose language model that can generate text in many languages. You can use it to generate text in different languages, translate text between languages, and perform other tasks that require multilingual text generation.
+"gpt2": This model is designed to generate human-like text, so it may be a good choice if you need to generate text that reads like it was written by a human. You can use it to generate blog posts, articles, and other types of text that require natural language generation.
+"longformer": This model is designed to generate longer and more complex text than previous models, so it may be a good choice if you need to generate text that is more than a few sentences long. You can use it to generate longer texts, such as essays and articles.
+Again, these are just a few examples of how you can use different models in the "transformers" library. You should experiment with different models and see which one works best for your specific use case.
